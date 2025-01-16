@@ -159,7 +159,7 @@
     const driver = findEngineDriver($connection, $extensions);
 
     const script = driver.createSaveChangeSetScript($changeSetStore?.value, $dbinfo, () =>
-      changeSetToSql($changeSetStore?.value, $dbinfo)
+      changeSetToSql($changeSetStore?.value, $dbinfo, driver.dialect)
     );
 
     const deleteCascades = getDeleteCascades($changeSetStore?.value, $dbinfo);

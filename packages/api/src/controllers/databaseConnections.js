@@ -173,7 +173,10 @@ module.exports = {
   async sqlSelect({ conid, database, select }, req) {
     testConnectionPermission(conid, req);
     const opened = await this.ensureOpened(conid, database);
-    const res = await this.sendRequest(opened, { msgtype: 'sqlSelect', select });
+    const res = await this.sendRequest(opened, {
+      msgtype: 'sqlSelect',
+      select,
+    });
     return res;
   },
 

@@ -32,6 +32,7 @@ export interface RunScriptOptions {
 export interface QueryOptions {
   discardResult?: boolean;
   importSqlDump?: boolean;
+  range?: { offset: number; limit: number };
 }
 
 export interface WriteTableOptions {
@@ -245,7 +246,7 @@ export interface EngineDriver<TClient = any> extends FilterBehaviourProvider {
   createSaveChangeSetScript(
     changeSet: any,
     dbinfo: DatabaseInfo,
-    defaultCreator: (changeSet: any, dbinfo: DatabaseInfo) => any
+    defaultCreator: (changeSet: any, dbinfo: DatabaseInfo, dialect: SqlDialect) => any
   ): any[];
   // adapts table info from different source (import, other database) to be suitable for this database
   adaptTableInfo(table: TableInfo): TableInfo;
