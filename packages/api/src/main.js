@@ -115,7 +115,12 @@ function start() {
     });
   });
 
-  app.use(bodyParser.json({ limit: '50mb' }));
+  app.use(
+    bodyParser.json({
+      limit: '50mb',
+      reviver: (_key, value) => (typeof value === 'number' && value > Number.MAX_SAFE_INTEGER ? BigInt(value) : value),
+    })
+  );
 
   app.use(
     getExpressPath('/uploads'),

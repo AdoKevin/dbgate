@@ -319,6 +319,14 @@ const yearMonthDaySecondCondition = () => value => {
   return createDateIntervalCondition(moment(dateObject).startOf('second'), moment(dateObject).endOf('second'));
 };
 
+function stringToNumberExt(value) {
+  const pNumber = Number(value);
+  if (Number.isInteger(pNumber) && !Number.isSafeInteger(pNumber)) {
+    return BigInt(value);
+  }
+  return pNumber;
+}
+
 const createParser = (filterBehaviour: FilterBehaviour) => {
   const langDef = {
     string1: () =>
@@ -333,17 +341,17 @@ const createParser = (filterBehaviour: FilterBehaviour) => {
 
     string1Num: () =>
       token(P.regexp(/"-?(0|[1-9][0-9]*)([.][0-9]+)?([eE][+-]?[0-9]+)?"/, 1))
-        .map(Number)
+        .map(stringToNumberExt)
         .desc('numer quoted'),
 
     string2Num: () =>
       token(P.regexp(/'-?(0|[1-9][0-9]*)([.][0-9]+)?([eE][+-]?[0-9]+)?'/, 1))
-        .map(Number)
+        .map(stringToNumberExt)
         .desc('numer quoted'),
 
     number: () =>
       token(P.regexp(/-?(0|[1-9][0-9]*)([.][0-9]+)?([eE][+-]?[0-9]+)?/))
-        .map(Number)
+        .map(stringToNumberExt)
         .desc('number'),
 
     objectid: () => token(P.regexp(/ObjectId\(['"]?[0-9a-f]{24}['"]?\)/)).desc('ObjectId'),

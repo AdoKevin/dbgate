@@ -177,7 +177,7 @@ export async function apiCall(
         'Content-Type': 'application/json',
         ...resolveApiHeaders(),
       },
-      body: JSON.stringify(args),
+      body: JSON.stringify(args, (_key, value) => (typeof value === 'bigint' ? value.toString() : value)),
     });
 
     if (resp.status == 401 && !apiDisabled) {
