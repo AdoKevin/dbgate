@@ -229,9 +229,9 @@ module.exports = {
   },
 
   loadKeys_meta: true,
-  async loadKeys({ conid, database, root, filter }, req) {
+  async loadKeys({ conid, database, root, filter, limit }, req) {
     testConnectionPermission(conid, req);
-    return this.loadDataCore('loadKeys', { conid, database, root, filter });
+    return this.loadDataCore('loadKeys', { conid, database, root, filter, limit });
   },
 
   exportKeys_meta: true,
@@ -253,9 +253,9 @@ module.exports = {
   },
 
   loadFieldValues_meta: true,
-  async loadFieldValues({ conid, database, schemaName, pureName, field, search }, req) {
+  async loadFieldValues({ conid, database, schemaName, pureName, field, search, dataType }, req) {
     testConnectionPermission(conid, req);
-    return this.loadDataCore('loadFieldValues', { conid, database, schemaName, pureName, field, search });
+    return this.loadDataCore('loadFieldValues', { conid, database, schemaName, pureName, field, search, dataType });
   },
 
   callMethod_meta: true,

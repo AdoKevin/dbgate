@@ -140,6 +140,25 @@ ORDER BY
 
           <FormCheckboxField name="dataGrid.alignNumbersRight" label="Align numbers to right" defaultValue={false} />
 
+          <FormTextField
+            name="dataGrid.collectionPageSize"
+            label="Collection page size (for MongoDB JSON view, must be between 5 and 1000)"
+            defaultValue="50"
+          />
+
+          <FormSelectField
+            label="Row coloring mode"
+            name="dataGrid.coloringMode"
+            isNative
+            defaultValue="36"
+            options={[
+              { value: '36', label: 'Every 3rd and 6th row' },
+              { value: '2-primary', label: 'Every 2-nd row, primary color' },
+              { value: '2-secondary', label: 'Every 2-nd row, secondary color' },
+              { value: 'none', label: 'None' },
+            ]}
+          />
+
           <div class="heading">SQL editor</div>
 
           <div class="flex">
@@ -340,6 +359,11 @@ ORDER BY
           <FormDefaultActionField
             label="Function click"
             objectTypeField="functions"
+            disabled={values['defaultAction.useLastUsedAction'] !== false}
+          />
+          <FormDefaultActionField
+            label="NoSQL collection click"
+            objectTypeField="collections"
             disabled={values['defaultAction.useLastUsedAction'] !== false}
           />
         </svelte:fragment>

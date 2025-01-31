@@ -258,8 +258,8 @@ async function handleCollectionData({ msgid, options }) {
   return handleDriverDataCore(msgid, driver => driver.readCollection(dbhan, options), { logName: 'readCollection' });
 }
 
-async function handleLoadKeys({ msgid, root, filter }) {
-  return handleDriverDataCore(msgid, driver => driver.loadKeys(dbhan, root, filter), { logName: 'loadKeys' });
+async function handleLoadKeys({ msgid, root, filter, limit }) {
+  return handleDriverDataCore(msgid, driver => driver.loadKeys(dbhan, root, filter, limit), { logName: 'loadKeys' });
 }
 
 async function handleExportKeys({ msgid, options }) {
@@ -291,10 +291,14 @@ async function handleLoadKeyTableRange({ msgid, key, cursor, count }) {
   });
 }
 
-async function handleLoadFieldValues({ msgid, schemaName, pureName, field, search }) {
-  return handleDriverDataCore(msgid, driver => driver.loadFieldValues(dbhan, { schemaName, pureName }, field, search), {
-    logName: 'loadFieldValues',
-  });
+async function handleLoadFieldValues({ msgid, schemaName, pureName, field, search, dataType }) {
+  return handleDriverDataCore(
+    msgid,
+    driver => driver.loadFieldValues(dbhan, { schemaName, pureName }, field, search, dataType),
+    {
+      logName: 'loadFieldValues',
+    }
+  );
 }
 
 function ensureExecuteCustomScript(driver) {

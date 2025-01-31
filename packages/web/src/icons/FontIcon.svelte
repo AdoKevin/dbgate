@@ -58,6 +58,7 @@
     'icon auth': 'mdi mdi-account-key',
     'icon version': 'mdi mdi-ticket-confirmation',
     'icon pin': 'mdi mdi-pin',
+    'icon pin-outline': 'mdi mdi-pin-outline',
     'icon arrange': 'mdi mdi-arrange-send-to-back',
     'icon app': 'mdi mdi-layers-triple',
     'icon open-in-new': 'mdi mdi-open-in-new',
@@ -66,6 +67,7 @@
     'icon parameter': 'mdi mdi-at',
     'icon trigger': 'mdi mdi-lightning-bolt',
     'icon scheduler-event': 'mdi mdi-calendar-blank',
+    'icon arrow-link': 'mdi mdi-arrow-top-right-thick',
 
     'icon window-restore': 'mdi mdi-window-restore',
     'icon window-maximize': 'mdi mdi-window-maximize',
@@ -204,6 +206,8 @@
     'icon type-unknown': 'mdi mdi-help-box',
 
     'icon at': 'mdi mdi-at',
+    'icon expand-all': 'mdi mdi-expand-all',
+    'icon collapse-all': 'mdi mdi-collapse-all',
 
     'img ok': 'mdi mdi-check-circle color-icon-green',
     'img ok-inv': 'mdi mdi-check-circle color-icon-inv-green',
@@ -297,7 +301,15 @@
   };
 </script>
 
-<span class={iconNames[icon] || icon} {title} class:padLeft class:padRight {style} on:click />
+<span
+  class={iconNames[icon] || icon}
+  {title}
+  class:padLeft
+  class:padRight
+  {style}
+  on:click
+  data-testid={$$props['data-testid']}
+/>
 
 <style>
   .padLeft {
